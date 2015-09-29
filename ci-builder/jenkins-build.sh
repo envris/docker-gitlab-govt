@@ -19,7 +19,7 @@ docker build -t dd/gitlab-base:latest .
 
 cd ../
 sed -i "s;.*FROM .*;FROM dd/gitlab-base:latest;" ./Dockerfile
-sed -i "s; trusty ; utopic ;" ./Dockerfile
+#sed -i "s; trusty ; utopic ;" ./Dockerfile
 
 echo -e "ENV BUILD_DETAILS ${GIT_COMMIT}_${BUILD_NUMBER}" >> ./Dockerfile
 echo -e "BUILD_DETAILS:\n  GIT_COMMIT: ${GIT_COMMIT}\n  BUILD_NUMBER: ${BUILD_NUMBER}\n" > ./BUILD_DETAILS
