@@ -1,7 +1,8 @@
 FROM ubuntu:trusty
 MAINTAINER Aaron Nicoli <aaronnicoli@gmail.com>
 
-RUN wget https://github.com/tianon/gosu/releases/download/1.4/gosu-amd64 -O /usr/local/bin/gosu
-RUN chmod +x /usr/local/bin/gosu
-
-RUN apt-get update && apt-get install -y libpam-krb5 libkrb5-dev
+RUN echo 'APT::Install-Recommends 0;' >> /etc/apt/apt.conf.d/01/norecommends \
+ && echo 'APT::Install-Suggests 0;' >> /etc/apt/apt.conf.d/01/norecommends \
+ && apt-get update \
+ && apt-get install -y vim.tiny wget sudo net-tools ca-certificates unzip \
+ && rm -rf /var/lib/apt/lists/*
