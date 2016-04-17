@@ -15,7 +15,7 @@ cd /builder/docker-gitlab-core
 if [ "${DOCKER_BASE_IMG}" != "" ] ; then
   sed -i "s;.*FROM .*;FROM ${DOCKER_BASE_IMG};" ./Dockerfile
 fi
-docker build -t dd/gitlab-base:latest .
+docker build --no-cache=true -t dd/gitlab-base:latest .
 
 cd ../
 sed -i "s;.*FROM .*;FROM dd/gitlab-base:latest;" ./Dockerfile
@@ -29,7 +29,7 @@ echo -e "ADD ./BUILD_DETAILS /etc/BUILD_DETAILS" >> ./Dockerfile
 cat ./Dockerfile
 
 # Build the new app server
-docker build -t dd/gitlab:latest . 
+docker build --no-cache=true -t dd/gitlab:latest . 
 
 LATEST_IMG=`docker images | grep "dd/gitlab" | grep "latest" | awk '{print $3}'`
 
